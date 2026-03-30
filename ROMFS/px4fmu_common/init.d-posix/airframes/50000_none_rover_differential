@@ -3,6 +3,7 @@
 # @type Rover
 # @class Rover
 
+
 . ${R}etc/init.d/rc.rover_differential_defaults
 
 
@@ -44,12 +45,16 @@ param set-default PP_LOOKAHD_MAX 10
 param set-default PP_LOOKAHD_MIN 1
 
 # Actuator mapping
-param set-default PWM_AUX_FUNC1 102 # left wheel
-param set-default PWM_AUX_MAX1 1880
-param set-default PWM_AUX_MIN1 1080
-param set-default PWM_AUX_DIS1 1490
+param set-default PWM_MAIN_FUNC1 102 # left wheel
+param set-default PWM_MAIN_FUNC2 101 # left wheel
 
-param set-default PWM_AUX_FUNC2 101 # left wheel
-param set-default PWM_AUX_MAX2 1880
-param set-default PWM_AUX_MIN2 1080
-param set-default PWM_AUX_DIS2 1490
+
+
+# =====================================
+# ENABLE UDP MAVLINK CHANNEL FOR ISAAC
+# =====================================
+
+# Isaac Sim reads & writes MAVLink on UDP
+# PX4 default instance → onboard mode
+
+mavlink start -u 14540 -r 20000 -m onboard -x
