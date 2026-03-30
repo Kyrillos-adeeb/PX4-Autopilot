@@ -50,11 +50,24 @@ param set-default PWM_MAIN_FUNC2 101 # left wheel
 
 
 
-# =====================================
-# ENABLE UDP MAVLINK CHANNEL FOR ISAAC
-# =====================================
+# =======================================
+# Instance 0 — GCS / QGroundControl
+# =======================================
+# PX4 sends → 14550
+# QGC listens on 14550 (auto)
+mavlink start -m config -x -u 14550 -r 400000
 
-# Isaac Sim reads & writes MAVLink on UDP
-# PX4 default instance → onboard mode
+# =======================================
+# Instance 1 — Offboard API (Isaac/MAVSDK)
+# =======================================
+# PX4 sends → 14540
+# Offboard API listens here
+# Allows commands, Offboard mode, missions
+mavlink start -m onboard -x -u 14540 -r 20000
 
-mavlink start -u 14540 -r 20000 -m onboard -x
+# =======================================
+# Instance 2 — Simulator HIL Link
+# =======================================
+# PX4 listens on 14560
+# Isaac Sim bridge sends IMU/GPS here
+mavlink start -m onboard -x -u 14560 -r 20000
