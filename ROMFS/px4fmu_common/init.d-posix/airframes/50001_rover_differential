@@ -10,6 +10,7 @@ PX4_SIMULATOR=${PX4_SIMULATOR:=remote}
 PX4_SIM_MODEL=${PX4_SIM_MODEL:=rover_differential}
 
 param set-default SYS_HITL 1
+param set SYS_MC_LOCKSTEP 0
 
 # TODO Tune Parameters after Proof of concept
 param set-default NAV_ACC_RAD 0.5 		# Acceptance Radius
