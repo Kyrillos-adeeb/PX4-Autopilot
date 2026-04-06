@@ -3,11 +3,15 @@
 # @type Rover
 # @class Rover
 
+
 . ${R}etc/init.d/rc.rover_differential_defaults
 
+PX4_SIMULATOR=${PX4_SIMULATOR:=remote}
+PX4_SIM_MODEL=${PX4_SIM_MODEL:=rover_differential}
+
+param set-default SYS_HITL 1 
 
 # TODO Tune Parameters after Proof of concept
-
 param set-default NAV_ACC_RAD 0.5 		# Acceptance Radius
 
 # Differential Parameters
@@ -23,33 +27,22 @@ param set-default RO_YAW_RATE_LIM 250		# To be tuned
 param set-default RO_YAW_ACCEL_LIM 400		# To be tuned
 param set-default RO_YAW_DECEL_LIM 800		# To be tuned
 param set-default RO_YAW_RATE_CORR 1		# To be tuned
-param set-default RO_YAW_EXPO 0.85		# To be tuned
+param set-default RO_YAW_EXPO 0.85		    # To be tuned
 
 # Attitude Control Parameters
-param set-default RO_YAW_P 5			# To be tuned
+param set-default RO_YAW_P 5			    # To be tuned
 
 # Velocity Control Parameters
 param set-default RO_ACCEL_LIM 4    		# To be tuned
-param set-default RO_DECEL_LIM 6		# To be tuned
-param set-default RO_JERK_LIM 10		# To be tuned
+param set-default RO_DECEL_LIM 6		    # To be tuned
+param set-default RO_JERK_LIM 10		    # To be tuned
 param set-default RO_MAX_THR_SPEED 2		# To be tuned
-param set-default RO_SPEED_LIM 1.8		# To be tuned
-param set-default RO_SPEED_I 0.01		# To be tuned
-param set-default RO_SPEED_P 0.01		# To be tuned
-param set-default RO_SPEED_RED 1		# To be tuned
-
-# Pure Pursuit parameters
-param set-default PP_LOOKAHD_GAIN 1
-param set-default PP_LOOKAHD_MAX 10
-param set-default PP_LOOKAHD_MIN 1
+param set-default RO_SPEED_LIM 1.8		    # To be tuned
+param set-default RO_SPEED_I 0.01		    # To be tuned
+param set-default RO_SPEED_P 0.01		    # To be tuned
+param set-default RO_SPEED_RED 1		    # To be tuned
 
 # Actuator mapping
-param set-default PWM_AUX_FUNC1 102 # left wheel
-param set-default PWM_AUX_MAX1 1880
-param set-default PWM_AUX_MIN1 1080
-param set-default PWM_AUX_DIS1 1490
+param set-default PWM_MAIN_FUNC1 102        # left wheel
+param set-default PWM_MAIN_FUNC2 101        # right wheel
 
-param set-default PWM_AUX_FUNC2 101 # left wheel
-param set-default PWM_AUX_MAX2 1880
-param set-default PWM_AUX_MIN2 1080
-param set-default PWM_AUX_DIS2 1490
