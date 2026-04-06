@@ -70,12 +70,12 @@ add_custom_target(none_iris
 	COMMENT "launching px4 none_iris (SYS_AUTOSTART=10016)"
 )
 
-add_custom_target(none_rover_differential
-	COMMAND ${CMAKE_COMMAND} -E env PX4_SYS_AUTOSTART=50000 $<TARGET_FILE:px4>
+add_custom_target(rover_differential
+	COMMAND ${CMAKE_COMMAND} -E env PX4_SYS_AUTOSTART=50001 PX4_SIM_MODEL=rover_differential $<TARGET_FILE:px4>
 	WORKING_DIRECTORY ${SITL_WORKING_DIR}
 	USES_TERMINAL
 	DEPENDS
 		px4
-		${PX4_SOURCE_DIR}/ROMFS/px4fmu_common/init.d-posix/airframes/50000_none_rover_differential
-	COMMENT "launching px4 none_rover_differential (SYS_AUTOSTART=50000)"
+		${PX4_SOURCE_DIR}/ROMFS/px4fmu_common/init.d-posix/airframes/50001_rover_differential
+	COMMENT "launching px4 rover_differential (SYS_AUTOSTART=50001)"
 )
