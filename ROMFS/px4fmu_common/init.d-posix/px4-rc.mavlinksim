@@ -1,18 +1,11 @@
 #!/bin/sh
 # shellcheck disable=SC2154
 
-# EKF2 specifics
-param set-default EKF2_GPS_DELAY 10
-param set SYS_HITL 1
-param set SENS_IMU_MODE 1
-
+param set SYS_HITL 0
+param set SENS_IMU_MODE 0
 param set EKF2_MAG_TYPE 0
-param set SYS_HAS_MAG 1
-param set SYS_HAS_BARO 0
+param set EKF2_GPS_DELAY 0
 
-param set EKF2_EV_CTRL 1
-param set EKF2_EV_DELAY 0
-param set EKF2_EV_VEL_NOISE 0.1
 
 simulator_tcp_port=$((4560+px4_instance))
 
