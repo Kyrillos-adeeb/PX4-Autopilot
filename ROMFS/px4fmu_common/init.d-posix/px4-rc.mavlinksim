@@ -5,7 +5,7 @@ param set SYS_HITL 0
 param set SENS_IMU_MODE 0
 param set EKF2_MAG_TYPE 0
 param set EKF2_GPS_DELAY 0
-
+param set SYS_HAS_BARO 0
 
 simulator_tcp_port=$((4560+px4_instance))
 
