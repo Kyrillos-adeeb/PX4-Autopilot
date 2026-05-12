@@ -19,7 +19,7 @@ pkill -x px4 || true
 
 sleep 1
 
-export PX4_SIM_MODEL=gazebo-classic_iris
+export PX4_SIM_MODEL=${PX4_SIM_MODEL:=rover_differential}
 
 n=0
 while [ $n -lt $sitl_num ]; do
