@@ -11,36 +11,39 @@ PX4_SIM_MODEL=${PX4_SIM_MODEL:=rover_differential}
 
 param set-default SYS_HITL 0
 
+param set-default CBRK_SUPPLY_CHK 894281
+param set-default EKF2_REQ_GPS_H 0.1
+
 # TODO Tune Parameters after Proof of concept
 param set-default NAV_ACC_RAD 0.5 			# Acceptance Radius
 
 # Differential Parameters
 param set-default RD_WHEEL_TRACK 0.335			# Distance from the center of right wheel to the center of left wheel
-param set-default RD_TRANS_DRV_TRN 0.785398		# To be tuned
-param set-default RD_TRANS_TRN_DRV 0.174533		# To be tuned
-param set-default RD_YAW_STK_GAIN 0.6			# To be tuned but not important
+param set-default RD_TRANS_DRV_TRN 0.174533		# To be tuned
+param set-default RD_TRANS_TRN_DRV 0.0872665  		# To be tuned
+param set-default RD_YAW_STK_GAIN 1.0			# To be tuned but not important
 
 # Rate Control Parameters
-param set-default RO_YAW_RATE_I 0.01			# To be tuned
-param set-default RO_YAW_RATE_P 0.25  			# To be tuned
-param set-default RO_YAW_RATE_LIM 250			# To be tuned
-param set-default RO_YAW_ACCEL_LIM 400			# To be tuned
-param set-default RO_YAW_DECEL_LIM 800			# To be tuned
+param set-default RO_YAW_RATE_I 0.01 			# To be tuned
+param set-default RO_YAW_RATE_P 0.10  			# To be tuned
+param set-default RO_YAW_RATE_LIM 320			# To be tuned
+param set-default RO_YAW_ACCEL_LIM -1			# To be tuned
+param set-default RO_YAW_DECEL_LIM -1			# To be tuned
 param set-default RO_YAW_RATE_CORR 1			# To be tuned
-param set-default RO_YAW_EXPO 0.85		    	# To be tuned
+param set-default RO_YAW_EXPO 0		    	# To be tuned
 
 # Attitude Control Parameters
-param set-default RO_YAW_P 5			    	# To be tuned
+param set-default RO_YAW_P 1.0			    	# To be tuned
 
 # Velocity Control Parameters
-param set-default RO_ACCEL_LIM 4    			# To be tuned
+param set-default RO_ACCEL_LIM 2   			# To be tuned
 param set-default RO_DECEL_LIM 6		    	# To be tuned
 param set-default RO_JERK_LIM 10		    	# To be tuned
 param set-default RO_MAX_THR_SPEED 2			# To be tuned
-param set-default RO_SPEED_LIM 10		    	# To be tuned
-param set-default RO_SPEED_I 0.01		    	# To be tuned
-param set-default RO_SPEED_P 0.01		    	# To be tuned
-param set-default RO_SPEED_RED 1		    	# To be tuned
+param set-default RO_SPEED_LIM 2		    	# To be tuned
+param set-default RO_SPEED_I 0.0    	    	# To be tuned
+param set-default RO_SPEED_P 0.0		    	# To be tuned
+param set-default RO_SPEED_RED -1		    	# To be tuned
 
 # Actuator mapping
 param set-default PWM_MAIN_FUNC1 102        		# left wheel
