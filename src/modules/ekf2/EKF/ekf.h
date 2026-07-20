@@ -86,6 +86,8 @@ public:
 	// initialise variables to sane values (also interface class)
 	bool init(uint64_t timestamp) override;
 
+	void resetExternalTrigger() { reset(); }
+
 	void print_status();
 
 	// should be called every time new data is pushed into the filter

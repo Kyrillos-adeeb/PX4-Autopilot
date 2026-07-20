@@ -598,6 +598,34 @@ void EKF2::Run()
 				command_ack.timestamp = hrt_absolute_time();
 				_vehicle_command_ack_pub.publish(command_ack);
 			}
+
+			if (vehicle_command.command == 31010) {  // MAV_CMD_USER_1
+				const uint32_t flags = (uint32_t)roundf(vehicle_command.param1);
+
+				vehicle_status_s status{};
+				const bool armed = _status_sub.copy(&status)
+								&& status.arming_state == vehicle_status_s::ARMING_STATE_ARMED;
+
+				if (armed) {
+					PX4_WARN("%d - EKF reset rejected: vehicle is armed", _instance);
+					command_ack.result = vehicle_command_ack_s::VEHICLE_CMD_RESULT_DENIED;
+				} else {
+					PX4_INFO("%d - EKF reset requested (flags=0x%02x)", _instance, flags);
+
+					if (flags & 0x01) {
+						_ekf.resetExternalTrigger();               // full state reset
+					}
+					if (flags & 0x02) {
+						_ekf.resetGyroBias();       // bias only
+						_ekf.resetAccelBias();
+					}
+
+					command_ack.result = vehicle_command_ack_s::VEHICLE_CMD_RESULT_ACCEPTED;
+				}
+
+				command_ack.timestamp = hrt_absolute_time();
+				_vehicle_command_ack_pub.publish(command_ack);
+			}
 		}
 	}
 

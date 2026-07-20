@@ -12,7 +12,12 @@ PX4_SIM_MODEL=${PX4_SIM_MODEL:=rover_differential}
 param set-default SYS_HITL 0
 
 param set-default CBRK_SUPPLY_CHK 894281
+param set-default SIM_BAT_MIN_PCT 100 
+param set-default SIM_BAT_DRAIN 0
+param set-default COM_LOW_BAT_ACT 0
 param set-default EKF2_REQ_GPS_H 0.1
+param set-default EKF2_GPS_CHECK 0
+param set-default EKF2_MAG_TYPE 0
 
 # TODO Tune Parameters after Proof of concept
 param set-default NAV_ACC_RAD 0.5 			# Acceptance Radius
