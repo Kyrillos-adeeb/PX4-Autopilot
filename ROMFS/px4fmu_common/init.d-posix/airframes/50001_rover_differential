@@ -18,6 +18,9 @@ param set-default COM_LOW_BAT_ACT 0
 param set-default EKF2_REQ_GPS_H 0.1
 param set-default EKF2_GPS_CHECK 0
 param set-default EKF2_MAG_TYPE 0
+param set EKF2_MAG_CHK_STR 0.4 
+param set EKF2_MAG_CHK_INC 30 
+param set-default SENS_IMU_AUTOCAL 0
 
 # TODO Tune Parameters after Proof of concept
 param set-default NAV_ACC_RAD 0.5 			# Acceptance Radius

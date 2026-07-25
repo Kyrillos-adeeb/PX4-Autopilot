@@ -87,6 +87,10 @@ public:
 	bool init(uint64_t timestamp) override;
 
 	void resetExternalTrigger() { reset(); }
+	// --- Public wrappers for teleport re-homing (HIL) ---
+	void resetHorizontalPositionToCurrent()      { resetHorizontalPositionToLastKnown(); }
+	void resetHorizontalVelocityToZeroPublic()   { resetHorizontalVelocityToZero(); }
+	void resetVerticalVelocityToZeroPublic()     { resetVerticalVelocityToZero(); }
 
 	void print_status();
 

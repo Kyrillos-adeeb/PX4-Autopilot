@@ -619,6 +619,13 @@ void EKF2::Run()
 						_ekf.resetGyroBias();       // bias only
 						_ekf.resetAccelBias();
 					}
+					if (flags & 0x04) {
+						// Teleport re-home: snap horizontal position to last-known and zero velocity
+						// so the position jump isn't integrated as motion.
+						_ekf.resetHorizontalPositionToCurrent();
+						_ekf.resetHorizontalVelocityToZeroPublic();
+						_ekf.resetVerticalVelocityToZeroPublic();
+					}
 
 					command_ack.result = vehicle_command_ack_s::VEHICLE_CMD_RESULT_ACCEPTED;
 				}
