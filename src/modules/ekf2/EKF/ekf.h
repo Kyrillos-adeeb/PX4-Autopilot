@@ -91,6 +91,14 @@ public:
 	void resetHorizontalPositionToCurrent()      { resetHorizontalPositionToLastKnown(); }
 	void resetHorizontalVelocityToZeroPublic()   { resetHorizontalVelocityToZero(); }
 	void resetVerticalVelocityToZeroPublic()     { resetVerticalVelocityToZero(); }
+	    // --- Public wrapper for HIL mag reset ---
+    void resetMagStatesPublic()
+    {
+		#if defined(CONFIG_EKF2_MAGNETOMETER)
+				// use the filtered mag measurement the EKF already holds
+				resetMagStates(_mag_lpf.getState(), true);   // reset_heading = true
+		#endif
+    }
 
 	void print_status();
 

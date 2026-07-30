@@ -613,18 +613,30 @@ void EKF2::Run()
 					PX4_INFO("%d - EKF reset requested (flags=0x%02x)", _instance, flags);
 
 					if (flags & 0x01) {
-						_ekf.resetExternalTrigger();               // full state reset
+						_ekf.resetExternalTrigger();
+						_ekf.resetGyroBias();
+						_ekf.resetAccelBias();
+						_ekf.resetGyroBiasCov();
+						_ekf.resetAccelBiasCov();
 					}
 					if (flags & 0x02) {
 						_ekf.resetGyroBias();       // bias only
 						_ekf.resetAccelBias();
 					}
 					if (flags & 0x04) {
-						// Teleport re-home: snap horizontal position to last-known and zero velocity
-						// so the position jump isn't integrated as motion.
-						_ekf.resetHorizontalPositionToCurrent();
-						_ekf.resetHorizontalVelocityToZeroPublic();
-						_ekf.resetVerticalVelocityToZeroPublic();
+						// Isaac passes the true teleport destination in param5/6/7
+						const double lat = vehicle_command.param5;   // degrees
+						const double lon = vehicle_command.param6;   // degrees
+						const float  alt = vehicle_command.param7;   // meters MSL
+						_ekf.resetGlobalPositionTo(lat, lon, alt, 1.0f, 1.0f);   // small variance = confident
+					}
+					// handler, flag 0x08
+					if (flags & 0x08) {
+						const float yaw = vehicle_command.param4;   // yaw in radians (NED)
+						_ekf.resetHeadingToExternalObservation(yaw, 0.05f);
+					}
+					if (flags & 0x10) {
+						_ekf.resetMagStatesPublic();   
 					}
 
 					command_ack.result = vehicle_command_ack_s::VEHICLE_CMD_RESULT_ACCEPTED;
