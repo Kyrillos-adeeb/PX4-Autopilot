@@ -32,26 +32,28 @@ param set-default NAV_ACC_RAD 0.5 			# Acceptance Radius
 # Differential Parameters
 param set-default RD_WHEEL_TRACK 0.335			# Distance from the center of right wheel to the center of left wheel
 param set-default RD_TRANS_DRV_TRN 0.174533		# To be tuned
-param set-default RD_TRANS_TRN_DRV 0.0872665  		# To be tuned
+param set-default RD_TRANS_TRN_DRV 0.261799 		# To be tuned
 param set-default RD_YAW_STK_GAIN 1.0			# To be tuned but not important
 
 # Rate Control Parameters
 param set-default RO_YAW_RATE_I 0.01 			
-param set-default RO_YAW_RATE_P 0.10  			
-param set-default RO_YAW_RATE_LIM 320			
-param set-default RO_YAW_ACCEL_LIM -1			
-param set-default RO_YAW_DECEL_LIM -1			
-param set-default RO_YAW_RATE_CORR 1			
-param set-default RO_YAW_EXPO 0		    	
+param set-default RO_YAW_RATE_P 2  			
+param set-default RO_YAW_RATE_LIM 1000			
+param set-default RO_YAW_ACCEL_LIM 6000			
+param set-default RO_YAW_DECEL_LIM 6000					
+param set-default RO_YAW_EXPO 0	
+param set-default RO_SPEED_RED -1
+param set-default PP_LOOKAHD_GAIN 2	    	
+param set-default PP_LOOKAHD_MIN 0.5
 
 # Attitude Control Parameters
-param set-default RO_YAW_P 1.0			    	# To be tuned
+param set-default RO_YAW_P 3.0			    	# To be tuned
 
 # Velocity Control Parameters
 param set-default RO_ACCEL_LIM 2   			# To be tuned
 param set-default RO_DECEL_LIM 6		    	# To be tuned
 param set-default RO_JERK_LIM 10		    	# To be tuned
-param set-default RO_MAX_THR_SPEED 2			# To be tuned
+param set-default RO_MAX_THR_SPEED 1			# To be tuned
 param set-default RO_SPEED_LIM 1		    	# To be tuned
 param set-default RO_SPEED_I 0.0    	    	# To be tuned
 param set-default RO_SPEED_P 0.0		    	# To be tuned
