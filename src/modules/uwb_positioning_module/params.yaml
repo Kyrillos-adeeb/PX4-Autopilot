@@ -1,0 +1,55 @@
+module_name: UWB Positioning Module
+parameters:
+- group: UWB Positioning
+  definitions:
+    UWB_POS_EN:
+      description:
+        short: Enable UWB positioning module
+        long: |-
+          Publish vehicle_visual_odometry computed from single-anchor UWB range
+          and angle-of-arrival data. The module must also be started, for
+          example with "uwb_positioning_module start".
+      type: boolean
+      default: 0
+      reboot_required: true
+
+    UWB_POS_NOISE:
+      description:
+        short: UWB position measurement noise (1 sigma)
+        long: |-
+          Standard deviation of the computed position, reported to EKF2 as the
+          position variance of the external vision measurement. EKF2 uses
+          EKF2_EVP_NOISE as a lower bound when EKF2_EV_NOISE_MD is 0.
+      type: float
+      default: 0.2
+      min: 0.01
+      max: 10.0
+      unit: m
+      decimal: 3
+
+    UWB_POS_R_MIN:
+      description:
+        short: Minimum accepted UWB range
+        long: |-
+          Samples closer than this are rejected. Very short ranges fall in the
+          antenna near field where the angle measurement is unreliable.
+      type: float
+      default: 0.2
+      min: 0.0
+      max: 10.0
+      unit: m
+      decimal: 2
+
+    UWB_POS_R_MAX:
+      description:
+        short: Maximum accepted UWB range
+        long: |-
+          Samples further than this are rejected as implausible, typically
+          reflections. Set this a little beyond the diagonal of the flight
+          volume.
+      type: float
+      default: 10.0
+      min: 1.0
+      max: 200.0
+      unit: m
+      decimal: 1

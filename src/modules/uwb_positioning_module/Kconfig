@@ -1,0 +1,7 @@
+menuconfig MODULES_UWB_POSITIONING_MODULE
+	bool "uwb_positioning_module"
+	default n
+	---help---
+		Enable support for uwb_positioning_module, which converts single-anchor
+		UWB range and angle-of-arrival data into an external vision position
+		estimate for EKF2.

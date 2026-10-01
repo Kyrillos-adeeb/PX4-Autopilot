@@ -574,6 +574,12 @@ else
 		mag_bias_estimator start
 	fi
 
+	# UWB single-anchor positioning
+	if param compare -s UWB_POS_EN 1
+	then
+		uwb_positioning_module start
+	fi
+
 	#
 	# Optional board mavlink streams: rc.board_mavlink
 	#
