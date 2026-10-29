@@ -75,7 +75,7 @@ fi
 
 ```
 N = -d · cos(azimuth) · sin(elevation)
-E =  d · sin(azimuth)
+E =  d · sin(azimuth) · sin(elevation)
 Z = -d · cos(elevation)
 ```
 

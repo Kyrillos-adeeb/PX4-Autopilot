@@ -98,11 +98,11 @@ bool UwbPositioningModule::computePosition(const sensor_uwb_s &uwb, const Quatf 
 	const float el = math::radians(uwb.aoa_elevation_dev);
 
 	// Spherical to Cartesian in the sensor frame.
-	//   N = -d * cos(elevation)
-	//   E =  d * sin(azimuth)
-	//   Z = -d * cos(azimuth) * sin(elevation)
+	//   N = -d * cos(azimuth) * sin(elevation) 
+	//   E =  d * sin(azimuth) * sin(elevation) 
+	//   Z = -d * cos(elevation)
 	const Vector3f v_sensor(-d * cosf(az) * sinf(el),
-				 d * sinf(az),
+				 d * sinf(az) * sinf(el),
 				-d * cosf(el));
 
 	// Add the lever arm from the vehicle centre of gravity to the UWB antenna.
